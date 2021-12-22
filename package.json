@@ -2,7 +2,7 @@
   "name": "covid19tracker",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -10,6 +10,7 @@
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
+    "@mui/lab": "^5.0.0-alpha.61",
     "@mui/material": "^5.2.5",
     "date-fns": "^2.27.0",
     "lodash": "^4.17.21",
