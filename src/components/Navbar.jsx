@@ -1,7 +1,6 @@
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { format } from 'date-fns';
 import { styled } from '@mui/material/styles';
@@ -13,7 +12,8 @@ import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { useEffect, useState } from 'react';
 import { Box, TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { ArrowBack } from '@mui/icons-material';
 import { fetchReports } from '../redux/reports/reports';
 
 const WhiteIconButton = styled(IconButton)(({ theme }) => ({
@@ -22,7 +22,10 @@ const WhiteIconButton = styled(IconButton)(({ theme }) => ({
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
   const navigate = useNavigate();
+  const isDetailsPage = /^\/details\/.+/.test(location.pathname);
+
   const [searchDate, setSearchDate] = useState(format(new Date(), 'yyyy-MM-dd'));
 
   useEffect(() => {
@@ -37,9 +40,11 @@ const Navbar = () => {
   return (
     <AppBar color="background">
       <Toolbar>
-        <WhiteIconButton>
-          <MenuIcon />
-        </WhiteIconButton>
+        {isDetailsPage ? (
+          <WhiteIconButton onClick={() => navigate('/')}>
+            <ArrowBack />
+          </WhiteIconButton>
+        ) : null}
         <Box
           sx={{
             flexGrow: '1',

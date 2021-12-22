@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import Navbar from './components/Navbar';
-
 import Home from './pages/Home';
 import Details from './pages/Details';
 
