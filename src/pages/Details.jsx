@@ -3,7 +3,7 @@ import { Grid, styled, Typography } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { WhiteTypoGraphy, StatsTypography } from './Home';
+import { WhiteTypoGraphy, StatsTypography, getSvgPath } from './Home';
 
 const DarkGrid = styled(Grid)`
   background-color: ${({ theme }) => theme.palette.secondary.dark};
@@ -31,21 +31,20 @@ const Details = () => {
   const { countries } = useSelector((state) => state.reports);
   const country = countries[countryName];
 
-  console.log(country.regions);
-
   return (
     <Grid container>
       <Grid item xs={12}>
         <div>
           {countries && (
             <img
-              src={country.imagePath ? country.imagePath : '/src/assets/placeholder.svg'}
-              alt={country.imagePath ? `${country.name} map` : 'Placeholder'}
+              src={getSvgPath(country.id)}
+              alt={`${country.name} map`}
               style={{
                 width: '60%  ',
                 aspectRatio: '1/1',
                 margin: '0 auto ',
                 display: 'block',
+                filter: 'invert(0.8)',
               }}
             />
           )}
@@ -181,7 +180,20 @@ const Details = () => {
           </RegionsGrid>
         ))
       ) : (
-        <p>There are no regions</p>
+        <WhiteTypoGraphy
+          variant="body1"
+          component="h5"
+          sx={{
+            textAlign: 'center',
+            width: '100%',
+            fontWeight: 'bolder',
+            lineHeight: '50px',
+          }}
+        >
+          There are no regions data for
+          {' '}
+          {country.name}
+        </WhiteTypoGraphy>
       )}
     </Grid>
   );
