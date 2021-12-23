@@ -43,7 +43,6 @@ const shouldItBeLight = (index) => {
 };
 
 export const getSvgPath = (country) => {
-  console.log('getSvgPath', country);
   const countryName = country.replace(/_/g, ' ').replace('*', '');
   const countryIso = getIsoCode(countryName);
   return `https://raw.githubusercontent.com/djaiss/mapsicon/33ba28808f8d32b5bae0ffada9cadd07073852e1/all/${countryIso}/vector.svg`;
@@ -99,11 +98,11 @@ const Home = () => {
               <StatsTypography>
                 <ArrowDropUp fontSize="large" />
                 <Typography variant="body2" component="p">
-                  {reports?.globalReport
-                    && parseInt(
-                      reports.globalReport.today_confirmed
-                        * reports.globalReport.today_vs_yesterday_confirmed,
-                      10,
+                  {reports?.globalReport &&
+                    parseInt(
+                      reports.globalReport.today_confirmed *
+                        reports.globalReport.today_vs_yesterday_confirmed,
+                      10
                     )}
                 </Typography>
               </StatsTypography>
@@ -116,8 +115,8 @@ const Home = () => {
           </Grid>
 
           <Grid container>
-            {reports?.countries
-              && _.map(reports.countriesArr, (country, index) => (
+            {reports?.countries &&
+              _.map(reports.countriesArr, (country, index) => (
                 <RenderCountries item xs={6} key={country.id}>
                   <Card
                     sx={{
@@ -179,7 +178,7 @@ const Home = () => {
                           <Typography variant="body2" component="p">
                             {parseInt(
                               country.today_confirmed * country.today_vs_yesterday_confirmed,
-                              10,
+                              10
                             )}
                           </Typography>
                         </StatsTypography>

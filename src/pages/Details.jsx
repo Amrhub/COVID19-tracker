@@ -9,7 +9,6 @@ const DarkGrid = styled(Grid)`
   background-color: ${({ theme }) => theme.palette.secondary.dark};
   min-height: 50px;
   line-height: 50px;
-  /* border: 1px solid ${({ theme }) => theme.palette.secondary.main} */
   padding-left: 2rem;
   padding-block: 1rem;
   color: white;
