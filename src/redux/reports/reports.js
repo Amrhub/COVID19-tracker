@@ -18,7 +18,7 @@ export const fetchReports = (date = '2021-12-21') => async (dispatch) => {
     const response = await fetch(API_URL + date);
     const data = await response.json();
 
-    data.total.imagePath = '/src/assets/world.svg';
+    data.total.imagePath = 'https://upload.wikimedia.org/wikipedia/commons/6/69/World_map_blank_gmt.svg';
     const countries = formatCountries(data);
     const countriesArr = _.map(countries, (country) => country);
     const payload = {

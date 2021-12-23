@@ -1,4 +1,5 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/57823cc1-432f-4702-9536-e3fc24c51a32/deploy-status)](https://app.netlify.com/sites/covid-19-tracker-amrhub/deploys)
 
 # COVID-19 Tracker
 
@@ -9,7 +10,7 @@
 > | ![Home Page](./app_screenshots/app_screenshot.png) | ![Details Page](./app_screenshots/app_screenshot2.png) | ![Region stats](./app_screenshots/app_screenshot3.png) |
 
 This is a mobile app that allows you to search by date and get all stats of each country (today confirmed, open, deaths,and recovered cases), you could also search by country name with a certain date to get all country stats and regions stats (if exists).
-These stats are based on since `Dec. 23rd, 2021` till that chosen date
+These stats are based on since `Jan. 23rd, 2020` till that chosen date
 
 ## Built With
 
@@ -18,7 +19,7 @@ These stats are based on since `Dec. 23rd, 2021` till that chosen date
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://covid-19-tracker-amrhub.netlify.app/)
 
 ## Getting Started
 

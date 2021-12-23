@@ -76,7 +76,12 @@ const Home = () => {
                   <img
                     src={reports.globalReport.imagePath}
                     alt="Worldwide map"
-                    style={{ height: '200px', aspectRatio: '1/1' }}
+                    style={{
+                      height: '200px',
+                      aspectRatio: '1/1',
+                      fill: 'white',
+                      filter: 'brightness(2) invert(0.2)',
+                    }}
                   />
                 )}
               </div>
