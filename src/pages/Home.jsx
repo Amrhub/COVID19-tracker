@@ -1,6 +1,13 @@
 import styled from '@mui/material/styles/styled';
 import {
-  Card, CardContent, CardMedia, Grid, IconButton, Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  CircularProgress,
+  Container,
+  Grid,
+  IconButton,
+  Typography,
 } from '@mui/material';
 import React from 'react';
 import { useSelector } from 'react-redux';
@@ -8,6 +15,7 @@ import { ArrowCircleRightOutlined, ArrowDropUp } from '@mui/icons-material';
 import RemoveIcon from '@mui/icons-material/Remove';
 import _ from 'lodash';
 import { useNavigate } from 'react-router-dom';
+import getIsoCode from '../logic/convertToIso3';
 
 export const WhiteTypoGraphy = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.white,
@@ -25,15 +33,21 @@ const RenderCountries = styled(Grid)`
   & > * {
     background-color: ${({ theme }) => theme.palette.secondary.dark};
   }
-  &:nth-of-type(4n),
-  &:first-of-type,
-  &:nth-of-type(4n + 1) {
-    background-color: ${({ theme }) => theme.palette.background.paper};
-    & > * {
-      background-color: ${({ theme }) => theme.palette.background.paper};
-    }
-  }
 `;
+
+const shouldItBeLight = (index) => {
+  if (index % 4 === 0 || index % 4 === 1) {
+    return true;
+  }
+  return false;
+};
+
+export const getSvgPath = (country) => {
+  console.log('getSvgPath', country);
+  const countryName = country.replace(/_/g, ' ').replace('*', '');
+  const countryIso = getIsoCode(countryName);
+  return `https://raw.githubusercontent.com/djaiss/mapsicon/33ba28808f8d32b5bae0ffada9cadd07073852e1/all/${countryIso}/vector.svg`;
+};
 
 const Home = () => {
   const reports = useSelector((state) => state.reports);
@@ -41,7 +55,20 @@ const Home = () => {
 
   return (
     <>
-      {reports.countries ? (
+      {reports.isFetching && (
+        <Container
+          sx={{
+            width: '100vw',
+            height: '50vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <CircularProgress />
+        </Container>
+      )}
+      {!reports.isFetching && reports.countries ? (
         <Grid container sx={{ display: 'flex', flexDirection: 'column' }}>
           <Grid container sx={{ paddingX: 2 }}>
             <Grid item xs={6}>
@@ -90,16 +117,24 @@ const Home = () => {
 
           <Grid container>
             {reports?.countries
-              && _.map(reports.countries, (country) => (
+              && _.map(reports.countriesArr, (country, index) => (
                 <RenderCountries item xs={6} key={country.id}>
-                  <Card sx={{ position: 'relative', borderRadius: '0 !important' }}>
+                  <Card
+                    sx={{
+                      position: 'relative',
+                      borderRadius: '0 !important',
+                      backgroundColor: shouldItBeLight(index + 1)
+                        ? 'background.main'
+                        : 'secondary.dark',
+                    }}
+                  >
                     <IconButton
                       aria-label="show more"
                       sx={{
                         position: 'absolute',
                         top: '0',
                         right: '0',
-                        color: '#000',
+                        color: '#fff ',
                       }}
                       onClick={() => {
                         navigate(`/details/${country.name}`);
@@ -107,21 +142,18 @@ const Home = () => {
                     >
                       <ArrowCircleRightOutlined />
                     </IconButton>
-                    {country.imagePath ? (
-                      <CardMedia
-                        component="img"
-                        src={country.imagePath}
-                        alt="Country map"
-                        sx={{ width: '100%', aspectRatio: '1/1' }}
-                      />
-                    ) : (
-                      <CardMedia
-                        component="img"
-                        src="/src/assets/placeholder.svg"
-                        alt="Country map"
-                        sx={{ width: '100%', aspectRatio: '1/1' }}
-                      />
-                    )}
+                    <CardMedia
+                      component="img"
+                      src={getSvgPath(country.id)}
+                      alt={`${country.name} map`}
+                      sx={{
+                        width: '65%',
+                        aspectRatio: '1/1',
+                        filter: 'invert(0.8)',
+                        margin: '12px auto 0',
+                      }}
+                    />
+
                     <CardContent
                       sx={{
                         height: '70px',
@@ -136,6 +168,7 @@ const Home = () => {
                         component="h3"
                         sx={{
                           textAlign: 'right',
+                          fontWeight: 'bolder',
                         }}
                       >
                         {country.name}
@@ -165,7 +198,19 @@ const Home = () => {
           </Grid>
         </Grid>
       ) : (
-        <div>Loading...</div>
+        !reports.isFetching && (
+          <WhiteTypoGraphy
+            sx={{
+              height: '50vh',
+              width: '100vw',
+              lineHeight: '50vh',
+              textAlign: 'center',
+            }}
+            variant="h4"
+          >
+            Failed to fetch data X_X
+          </WhiteTypoGraphy>
+        )
       )}
     </>
   );
