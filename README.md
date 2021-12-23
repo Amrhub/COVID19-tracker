@@ -1,29 +1,29 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# COVID-19 Tracker
 
-> One paragraph statement about the project.
+> Mobile web app that Keeps track of COVID-19 in 190+ countries
 
-![screenshot](./app_screenshot.png)
+> |                     Home Page                      |                      Details Page                      |                 Details (Region stats)                 |
+> | :------------------------------------------------: | :----------------------------------------------------: | :----------------------------------------------------: |
+> | ![Home Page](./app_screenshots/app_screenshot.png) | ![Details Page](./app_screenshots/app_screenshot2.png) | ![Region stats](./app_screenshots/app_screenshot3.png) |
 
-Additional description about the project and its features.
+This is a mobile app that allows you to search by date and get all stats of each country (today confirmed, open, deaths,and recovered cases), you could also search by country name with a certain date to get all country stats and regions stats (if exists).
+These stats are based on since `Dec. 23rd, 2021` till that chosen date
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- JavaScript, HTML, and CSS3
+- React, Redux, Material UI, Jest, and React Testing Library
 
 ## Live Demo
 
 [Live Demo Link](https://livedemo.com)
 
-
 ## Getting Started
 
 **This is an example of how you may give instructions on setting up your project locally.**
 **Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
 
 To get a local copy up and running follow these simple example steps.
 
@@ -38,8 +38,6 @@ To get a local copy up and running follow these simple example steps.
 ### Run tests
 
 ### Deployment
-
-
 
 ## Authors
 
