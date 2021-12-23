@@ -1,5 +1,5 @@
-import styled from '@mui/material/styles/styled';
 import {
+  styled,
   Card,
   CardContent,
   CardMedia,
@@ -64,7 +64,7 @@ const Home = () => {
             alignItems: 'center',
           }}
         >
-          <CircularProgress />
+          <CircularProgress data-testid="progress" />
         </Container>
       )}
       {!reports.isFetching && reports.countries ? (
@@ -98,11 +98,11 @@ const Home = () => {
               <StatsTypography>
                 <ArrowDropUp fontSize="large" />
                 <Typography variant="body2" component="p">
-                  {reports?.globalReport &&
-                    parseInt(
-                      reports.globalReport.today_confirmed *
-                        reports.globalReport.today_vs_yesterday_confirmed,
-                      10
+                  {reports?.globalReport
+                    && parseInt(
+                      reports.globalReport.today_confirmed
+                        * reports.globalReport.today_vs_yesterday_confirmed,
+                      10,
                     )}
                 </Typography>
               </StatsTypography>
@@ -115,8 +115,8 @@ const Home = () => {
           </Grid>
 
           <Grid container>
-            {reports?.countries &&
-              _.map(reports.countriesArr, (country, index) => (
+            {reports?.countries
+              && _.map(reports.countriesArr, (country, index) => (
                 <RenderCountries item xs={6} key={country.id}>
                   <Card
                     sx={{
@@ -178,7 +178,7 @@ const Home = () => {
                           <Typography variant="body2" component="p">
                             {parseInt(
                               country.today_confirmed * country.today_vs_yesterday_confirmed,
-                              10
+                              10,
                             )}
                           </Typography>
                         </StatsTypography>
