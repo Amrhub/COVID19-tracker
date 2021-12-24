@@ -20,7 +20,8 @@ These stats are based on since `Jan. 23rd, 2020` till that chosen date
 
 ## Live Demo
 
-[Live Demo Link](https://covid-19-tracker-amrhub.netlify.app/)
+[Live Demo Link](https://covid-19-tracker-amrhub.netlify.app/) <br>
+[Project overview](https://youtu.be/Ea-nHHvOlmk)
 
 ## Getting Started
 
