@@ -71,7 +71,7 @@ cd COVID19-tracker  // to open the project
     yarn test
 ```
 
-## Authors
+## Author
 
 👤 **Amr Ahmed**
 
